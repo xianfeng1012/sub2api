@@ -148,6 +148,15 @@ func (s *OpenAIGatewayService) ForwardSeedance(ctx context.Context, c *gin.Conte
 		result.UpstreamModel = gjson.GetBytes(responseBody, "model").String()
 		if gjson.GetBytes(responseBody, "status").String() == "succeeded" {
 			result.Usage.OutputTokens = max(0, int(gjson.GetBytes(responseBody, "usage.completion_tokens").Int()))
+			// 制品地址：优先取 content.video_url，另兼容常见直链字段。
+			artifactURL := strings.TrimSpace(gjson.GetBytes(responseBody, "content.video_url").String())
+			if artifactURL == "" {
+				artifactURL = strings.TrimSpace(gjson.GetBytes(responseBody, "video_url").String())
+			}
+			if artifactURL == "" {
+				artifactURL = strings.TrimSpace(gjson.GetBytes(responseBody, "url").String())
+			}
+			result.ArtifactURL = artifactURL
 		}
 	}
 	writeGrokMediaResponse(c, resp, responseBody, s.responseHeaderFilter)

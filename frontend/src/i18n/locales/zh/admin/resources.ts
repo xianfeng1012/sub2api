@@ -521,6 +521,8 @@ export default {
       upstreamRequestId: '上游ID',
       requestIdCopied: '请求ID已复制',
       upstreamRequestIdCopied: '上游ID已复制',
+      artifact: '制品',
+      artifactOpen: '打开视频',
       allModels: '全部模型',
       allAccounts: '全部账户',
       allGroups: '全部分组',

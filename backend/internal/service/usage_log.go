@@ -208,6 +208,10 @@ type UsageLog struct {
 	VideoResolution      *string
 	VideoDurationSeconds *int
 
+	// ArtifactURL 是异步媒体任务完成后可回看的制品地址（Seedance 视频直链），
+	// 仅当状态轮询观察到 succeeded 时写入；其他请求为 nil。
+	ArtifactURL *string
+
 	CreatedAt time.Time
 
 	User         *User

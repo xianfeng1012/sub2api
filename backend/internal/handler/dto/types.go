@@ -646,6 +646,9 @@ type UsageLog struct {
 	ImageSizeSource    *string        `json:"image_size_source"`
 	ImageSizeBreakdown map[string]int `json:"image_size_breakdown"`
 	MediaType          *string        `json:"media_type"`
+	// ArtifactURL 是异步媒体任务完成后可回看的制品地址（如 Seedance 视频），
+	// 没有制品时为 nil 并在 JSON 中省略。
+	ArtifactURL *string `json:"artifact_url,omitempty"`
 
 	// User-Agent
 	UserAgent *string `json:"user_agent"`

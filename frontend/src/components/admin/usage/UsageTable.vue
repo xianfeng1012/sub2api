@@ -117,6 +117,26 @@
           </div>
         </template>
 
+        <template #cell-artifact="{ row }">
+          <div v-if="row.artifact_url" class="space-y-1">
+            <video
+              :src="row.artifact_url"
+              controls
+              preload="none"
+              class="h-20 w-32 rounded bg-black"
+            />
+            <a
+              :href="row.artifact_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block text-[11px] text-primary-600 underline underline-offset-2 transition-colors hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
+            >
+              {{ t('admin.usage.artifactOpen') }}
+            </a>
+          </div>
+          <span v-else class="text-sm text-gray-400 dark:text-gray-500">-</span>
+        </template>
+
         <template #cell-group="{ row }">
           <span v-if="row.group" class="inline-flex items-center rounded px-2 py-0.5 text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
             {{ row.group.name }}
